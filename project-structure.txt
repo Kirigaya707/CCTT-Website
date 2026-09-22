@@ -1,0 +1,63 @@
+chuti-chuti-app/
+├── .vscode/
+│   └── settings.json
+├── .dockerignore
+├── AGENTS.md
+├── CLAUDE.md
+├── Dockerfile
+├── public/
+├── src/
+│   ├── app/
+│   │   ├── about/
+│   │   │   └── page.tsx
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   │       └── [...nextauth]/
+│   │   │           └── route.ts
+│   │   ├── contact/
+│   │   │   └── page.tsx
+│   │   ├── custom-itinerary/
+│   │   │   └── page.tsx
+│   │   ├── feedback/
+│   │   │   └── page.tsx
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── tours/
+│   │   │   ├── [slug]/
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   ├── Navbar.tsx
+│   │   └── TourCard.tsx
+│   ├── lib/
+│   │   └── auth.ts
+│   ├── models/
+│   │   ├── Tour.js
+│   │   ├── Booking.js
+│   │   └── Review.js
+│   ├── controllers/
+│   │   ├── tourController.js
+│   │   ├── bookingController.js
+│   │   └── reviewController.js
+│   ├── routes/
+│   │   └── tourRoutes.js
+│   └── views/
+│       ├── components/
+│       │   ├── HeroSection.tsx
+│       │   ├── TourCard.tsx
+│       │   └── ReviewSection.tsx
+├── .gitignore
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.js
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── README.md
+├── tailwind.config.js
+├── tsconfig.json
+└── project-structure.txt

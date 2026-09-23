@@ -16,7 +16,10 @@ import {
   Compass,
 } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default function TourDetailsPage({ params }: { params: { slug: string } }) {
+  const slug = params.slug || 'durga-puja-parikrama';
   const [guests, setGuests] = useState(2);
   const [hub, setHub] = useState('Kolkata (CCU / Howrah)');
 
@@ -292,7 +295,7 @@ export default function TourDetailsPage({ params }: { params: { slug: string } }
                       await supabase.from('booking_requests').insert([
                         {
                           user_email: 'guest@chutichuti.in',
-                          tour_slug: params.slug || 'durga-puja-parikrama',
+                          tour_slug: slug,
                           tour_title: 'Old Silk Route & Zuluk Himalayan Loop',
                           guests: guests,
                           hub: hub,

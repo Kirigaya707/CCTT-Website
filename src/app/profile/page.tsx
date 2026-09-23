@@ -6,6 +6,8 @@ import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import { User, Compass, Clock } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default function ProfilePage() {
   const { data: session, status } = useSession();
   const email = session?.user?.email || '';

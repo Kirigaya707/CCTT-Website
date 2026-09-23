@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import TourCard from '@/components/TourCard';
 import { supabase } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic';
+
 const fallbackTours = [
   {
     slug: 'durga-puja-parikrama',

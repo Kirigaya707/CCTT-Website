@@ -1,7 +1,7 @@
 import "./globals.css";
 import React from "react";
-import { SessionProvider } from "next-auth/react";
 import Navbar from "@/components/Navbar";
+import Providers from "./providers";
 
 export const metadata = {
   title: "Chuti Chuti Tours & Travels | Heritage & Curated Experiences",
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-cream text-stone-900 antialiased">
-        <SessionProvider>
+        <Providers>
           <Navbar />
           <main className="flex-1">{children}</main>
           <footer className="bg-moss-dark text-sand py-10 border-t border-moss">
@@ -32,7 +32,7 @@ export default function RootLayout({
               </p>
             </div>
           </footer>
-        </SessionProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -1,11 +1,10 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import TourCard from '@/components/TourCard';
+import { supabase } from '@/lib/supabase';
 
-export const metadata = {
-  title: 'Curated Trips | Chuti Chuti Tours & Travels',
-  description: 'Explore our curated package tours including Durga Puja Parikrama and Silk Route expeditions.',
-};
-
-const tours = [
+const fallbackTours = [
   {
     slug: 'durga-puja-parikrama',
     title: '17 Bonedi Bari Durga Puja Parikrama',
@@ -51,6 +50,42 @@ const tours = [
 ];
 
 export default function ToursPage() {
+  const [tours, setTours] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchTours() {
+      try {
+        const { data, error } = await supabase
+          .from('tours')
+          .select('*')
+          .eq('is_active', true);
+
+        if (error || !data || data.length === 0) {
+          setTours(fallbackTours);
+        } else {
+          const formattedData = data.map((item: any) => ({
+            slug: item.slug,
+            title: item.title,
+            subtitle: item.subtitle,
+            duration: item.duration,
+            pickup: item.pickup,
+            price: `₹${item.price_veg}`,
+            badge: item.badge,
+            highlights: item.highlights || [],
+          }));
+          setTours(formattedData);
+        }
+      } catch (err) {
+        setTours(fallbackTours);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTours();
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
@@ -65,11 +100,15 @@ export default function ToursPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {tours.map((tour) => (
-          <TourCard key={tour.slug} {...tour} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="text-center py-12 text-stone-500 text-sm">Loading tours...</div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {tours.map((tour) => (
+            <TourCard key={tour.slug} {...tour} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

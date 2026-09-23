@@ -284,15 +284,35 @@ export default function TourDetailsPage({ params }: { params: { slug: string } }
               </div>
 
               <div className="space-y-3">
-                <a
-                  href={`https://wa.me/919830072946?text=Hi%20Chuti%20Chuti!%20I%20want%20to%20book%20the%20Old%20Silk%20Route%20tour%20for%20${guests}%20guests.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={async () => {
+                    try {
+                      const { supabase } = await import('@/lib/supabase');
+                      await supabase.from('booking_requests').insert([
+                        {
+                          user_email: 'guest@chutichuti.in',
+                          tour_slug: params.slug || 'durga-puja-parikrama',
+                          tour_title: 'Old Silk Route & Zuluk Himalayan Loop',
+                          guests: guests,
+                          hub: hub,
+                          status: 'pending',
+                        },
+                      ]);
+                    } catch (err) {
+                      console.error('Supabase booking record error:', err);
+                    }
+
+                    const message = encodeURIComponent(
+                      `Hi Chuti Chuti! I want to book a tour.\nTour: Old Silk Route & Zuluk Himalayan Loop\nGuests: ${guests}\nBoarding Hub: ${hub}\nEstimated Total: ₹${totalPrice.toLocaleString('en-IN')}`
+                    );
+                    window.open(`https://wa.me/919830072946?text=${message}`, '_blank');
+                  }}
                   className="w-full flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold py-3.5 px-4 rounded-2xl transition shadow-md text-sm"
                 >
                   <MessageSquare className="w-4 h-4" />
                   Reserve Spot Now
-                </a>
+                </button>
 
                 <a
                   href="tel:+919830072946"

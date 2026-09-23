@@ -588,15 +588,38 @@ export default function CustomItineraryPage() {
               </div>
 
               <div className="space-y-3 pt-2">
-                <a
-                  href={`https://wa.me/919830072946?text=Hi%20Chuti%20Chuti!%20I%20want%20to%20plan%20a%20custom%20trip%20from%20${hub}%20for%20${guests}%20guests.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={async () => {
+                    try {
+                      const { supabase } = await import('@/lib/supabase');
+                      await supabase.from('custom_requests').insert([
+                        {
+                          user_email: 'guest@chutichuti.in',
+                          hub,
+                          companions,
+                          landscape,
+                          comforts,
+                          vehicle_type: vehicle.name,
+                          guests,
+                          nights,
+                          estimated_budget: perGuestBudget,
+                        },
+                      ]);
+                    } catch (err) {
+                      console.error('Supabase logging error:', err);
+                    }
+
+                    const message = encodeURIComponent(
+                      `Hi Chuti Chuti! I want to plan a custom trip.\nHub: ${hub}\nGuests: ${guests}\nNights: ${nights}\nLandscape: ${landscape}\nVehicle: ${vehicle.name}\nBudget: ₹${perGuestBudget}/guest`
+                    );
+                    window.open(`https://wa.me/919830072946?text=${message}`, '_blank');
+                  }}
                   className="w-full flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold py-3.5 px-4 rounded-2xl transition shadow-md text-sm"
                 >
                   <MessageSquare className="w-4 h-4" />
                   Get WhatsApp Itinerary in 2 Hours
-                </a>
+                </button>
 
                 <a
                   href="tel:+919830072946"

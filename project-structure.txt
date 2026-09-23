@@ -10,6 +10,8 @@ chuti-chuti-app/
 │   ├── app/
 │   │   ├── about/
 │   │   │   └── page.tsx
+│   │   ├── admin/
+│   │   │   └── page.tsx
 │   │   ├── api/
 │   │   │   └── auth/
 │   │   │       └── [...nextauth]/
@@ -21,6 +23,8 @@ chuti-chuti-app/
 │   │   ├── feedback/
 │   │   │   └── page.tsx
 │   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── profile/
 │   │   │   └── page.tsx
 │   │   ├── tours/
 │   │   │   ├── [slug]/
@@ -34,7 +38,8 @@ chuti-chuti-app/
 │   │   ├── Navbar.tsx
 │   │   └── TourCard.tsx
 │   ├── lib/
-│   │   └── auth.ts
+│   │   ├── auth.ts
+│   │   └── supabase.ts
 │   ├── models/
 │   │   ├── Tour.js
 │   │   ├── Booking.js
@@ -60,4 +65,5 @@ chuti-chuti-app/
 ├── README.md
 ├── tailwind.config.js
 ├── tsconfig.json
-└── project-structure.txt
+├── project-structure.txt
+└── .env.local

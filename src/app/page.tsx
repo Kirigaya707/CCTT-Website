@@ -136,7 +136,6 @@ export default function HomePage() {
                   <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
                     <option>Kolkata (CCU / Howrah)</option>
                     <option>Durgapur (DGR / City Centre)</option>
-                    <option>Siliguri / NJP</option>
                   </select>
                 </div>
                 <div>

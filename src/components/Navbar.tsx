@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
@@ -11,9 +12,15 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-sand">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <Link href="/" className="flex flex-col">
-          <span className="font-serif text-2xl font-bold tracking-tight text-moss-dark">chuti chuti</span>
-          <span className="text-[10px] tracking-[0.25em] text-terracotta uppercase font-semibold">Tours &amp; Travels</span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.jpg"
+            alt="Chuti Chuti Tours & Travels"
+            width={160}
+            height={55}
+            className="h-14 w-auto object-contain"
+            priority
+          />
         </Link>
         <nav className="hidden md:flex items-center gap-8 font-medium text-stone-700">
           <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>

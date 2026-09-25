@@ -115,9 +115,6 @@ export default function HomePage() {
       <section className="relative bg-cream pt-8 pb-12 px-4 sm:px-6 lg:px-8 border-b border-sand">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <span className="inline-block bg-terracotta/10 text-terracotta text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
-              BESPOKE BENGALI TRAVEL STUDIO
-            </span>
             <h1 className="text-4xl sm:text-6xl font-serif font-bold text-moss-dark leading-tight">
               Holidaying made <span className="italic text-terracotta">soulful</span>,{' '}
               <span className="italic text-moss">scenic</span>, & simple.

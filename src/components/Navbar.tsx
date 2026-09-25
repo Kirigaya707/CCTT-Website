@@ -37,12 +37,22 @@ export default function Navbar() {
             .brand-text-pan {
               animation: panRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             }
-            :global(.group:hover) .brand-text-pan,
-            :global(.group:active) .brand-text-pan {
-              animation: none;
-              animation: panRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            :global(.group:hover) .brand-text-pan {
+              animation: panRightHover 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             }
             @keyframes panRight {
+              0% {
+                clip-path: inset(0 100% 0 0);
+                opacity: 0;
+                transform: translateX(-10px);
+              }
+              100% {
+                clip-path: inset(0 0 0 0);
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+            @keyframes panRightHover {
               0% {
                 clip-path: inset(0 100% 0 0);
                 opacity: 0;
@@ -60,6 +70,7 @@ export default function Navbar() {
           <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>
           <Link href="/tours" className="hover:text-terracotta transition-colors">Curated Trips</Link>
           <Link href="/custom-itinerary" className="hover:text-terracotta transition-colors">Custom Itinerary</Link>
+          <Link href="/about" className="hover:text-terracotta transition-colors">About Us</Link>
         </nav>
 
         <div className="flex items-center gap-3">

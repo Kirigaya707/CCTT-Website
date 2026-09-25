@@ -12,16 +12,16 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-sand">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3.5 group">
+        <Link href="/" className="flex items-center gap-3.5 group select-none">
           <Image
             src="/logo.jpg"
             alt="Chuti Chuti Icon"
             width={48}
             height={48}
-            className="h-12 w-auto object-contain"
+            className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             priority
           />
-          <div className="flex flex-col justify-center animate-[panRight_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+          <div className="flex flex-col justify-center brand-text-pan">
             <span className="font-serif text-2xl font-bold tracking-tight text-moss-dark leading-none">
               chuti chuti
             </span>
@@ -34,11 +34,19 @@ export default function Navbar() {
             </div>
           </div>
           <style jsx>{`
+            .brand-text-pan {
+              animation: panRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+            :global(.group:hover) .brand-text-pan,
+            :global(.group:active) .brand-text-pan {
+              animation: none;
+              animation: panRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
             @keyframes panRight {
               0% {
                 clip-path: inset(0 100% 0 0);
                 opacity: 0;
-                transform: translateX(-8px);
+                transform: translateX(-10px);
               }
               100% {
                 clip-path: inset(0 0 0 0);

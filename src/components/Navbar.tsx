@@ -12,15 +12,41 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-sand">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center gap-3.5 group">
           <Image
             src="/logo.jpg"
-            alt="Chuti Chuti Tours & Travels"
-            width={160}
-            height={55}
-            className="h-14 w-auto object-contain"
+            alt="Chuti Chuti Icon"
+            width={48}
+            height={48}
+            className="h-12 w-auto object-contain"
             priority
           />
+          <div className="flex flex-col justify-center animate-[panRight_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+            <span className="font-serif text-2xl font-bold tracking-tight text-moss-dark leading-none">
+              chuti chuti
+            </span>
+            <div className="flex items-center gap-1.5 mt-1">
+              <span className="h-[1px] w-3 bg-gold inline-block" />
+              <span className="text-[9px] tracking-[0.2em] uppercase font-bold text-stone-600 leading-none">
+                Tours &amp; Travels
+              </span>
+              <span className="h-[1px] w-3 bg-gold inline-block" />
+            </div>
+          </div>
+          <style jsx>{`
+            @keyframes panRight {
+              0% {
+                clip-path: inset(0 100% 0 0);
+                opacity: 0;
+                transform: translateX(-8px);
+              }
+              100% {
+                clip-path: inset(0 0 0 0);
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+          `}</style>
         </Link>
         <nav className="hidden md:flex items-center gap-8 font-medium text-stone-700">
           <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>

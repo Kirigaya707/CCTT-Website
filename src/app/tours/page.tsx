@@ -6,50 +6,7 @@ import { supabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
-const fallbackTours = [
-  {
-    slug: 'durga-puja-parikrama',
-    title: '17 Bonedi Bari Durga Puja Parikrama',
-    subtitle: 'Kolkata Heritage & Rajbari Culture Experience',
-    duration: '1 Day (8:00 AM Departure)',
-    pickup: 'Esplanade, Kolkata',
-    price: '₹600 - ₹800',
-    badge: 'Heritage Special',
-    highlights: [
-      '17 Traditional Bonedi Bari Durga Puja Visits',
-      'AC Luxury Mini Bus Travel',
-      'Grand Rajbari Lunch at Shobhabazar Rajbari',
-    ],
-  },
-  {
-    slug: 'himalayan-high-pass',
-    title: 'Ancient Silk Route Expedition',
-    subtitle: 'Zuluk, Nathang Valley & High Altitude Passes',
-    duration: '5 Days / 4 Nights',
-    pickup: 'NJP Railway Station / Siliguri',
-    price: '₹4,500',
-    badge: 'Mountain Travel',
-    highlights: [
-      'Zig-Zag roads of Zuluk & Thambi View Point',
-      'Kupup Elephant Lake & Old Baba Mandir',
-      'Traditional Homestay Experiences',
-    ],
-  },
-  {
-    slug: 'mindful-eco-retreat',
-    title: 'Mindful Heritage & Eco Retreat',
-    subtitle: 'Cultural Nature Trails & Peaceful Escapes',
-    duration: '3 Days / 2 Nights',
-    pickup: 'Kolkata Central Pickup',
-    price: '₹2,200',
-    badge: 'Eco Retreat',
-    highlights: [
-      'Guided Nature Walk & Organic Dining',
-      'Heritage Village Sightseeing',
-      'Comfortable Eco-Lodge Stay',
-    ],
-  },
-];
+const fallbackTours: any[] = [];
 
 export default function ToursPage() {
   const [tours, setTours] = useState<any[]>([]);

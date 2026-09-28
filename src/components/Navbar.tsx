@@ -74,8 +74,6 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a href="tel:+919830072946" className="hidden lg:inline-flex items-center justify-center px-4 py-2 rounded-full border border-terracotta text-terracotta hover:bg-terracotta hover:text-white transition-all text-xs font-semibold">Call: +91 98300 72946</a>
-
           {isLoggedIn ? (
             <>
               <Link href="/profile" className="px-3.5 py-2 rounded-full border border-moss-dark/20 text-moss-dark hover:bg-sand transition-all text-xs font-bold">

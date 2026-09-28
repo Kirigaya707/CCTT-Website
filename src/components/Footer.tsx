@@ -29,6 +29,7 @@ export default function Footer() {
           <ul className="space-y-2 text-xs text-cream/80">
             <li><Link href="/" className="hover:text-gold transition">Home</Link></li>
             <li><Link href="/tours" className="hover:text-gold transition">Curated Trips</Link></li>
+            <li><Link href="/events" className="hover:text-gold transition">Events &amp; Parikramas</Link></li>
             <li><Link href="/custom-itinerary" className="hover:text-gold transition">Custom Itinerary</Link></li>
             <li><Link href="/about" className="hover:text-gold transition">About Us</Link></li>
           </ul>

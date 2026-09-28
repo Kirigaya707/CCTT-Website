@@ -69,6 +69,7 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-8 font-medium text-stone-700">
           <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>
           <Link href="/tours" className="hover:text-terracotta transition-colors">Curated Trips</Link>
+          <Link href="/events" className="hover:text-terracotta transition-colors">Events &amp; Parikramas</Link>
           <Link href="/custom-itinerary" className="hover:text-terracotta transition-colors">Custom Itinerary</Link>
           <Link href="/about" className="hover:text-terracotta transition-colors">About Us</Link>
         </nav>

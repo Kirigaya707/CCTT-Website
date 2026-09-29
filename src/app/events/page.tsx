@@ -5,56 +5,7 @@ export const dynamic = 'force-dynamic';
 import React from 'react';
 import { Calendar, MapPin, Clock, Bus, Utensils, MessageSquare, PhoneCall, CheckCircle2 } from 'lucide-react';
 
-const specialEvents = [
-  {
-    id: 'bonedi-bari-parikrama',
-    badge: 'FLAGSHIP FESTIVAL EVENT',
-    title: '17 Bonedi Bari Durga Puja Parikrama',
-    subtitle: 'Century-Old Rajbari Pujas, Heritage Architecture & Grand Feast',
-    date: 'Durga Puja Festival Days (Oct 2026)',
-    time: '08:00 AM Departure (Prompt)',
-    pickup: 'Esplanade Pickup Point, Kolkata',
-    transport: 'AC Luxury Mini Bus',
-    food: 'Breakfast Packet, Refreshments & Grand Rajbari Feast at Shobhabazar Rajbari',
-    priceVeg: '₹600',
-    priceNonVeg: '₹800',
-    bonediList: [
-      'Rani Rashmoni Bari (Biswas, Chowdhury & Kachari Bari)',
-      'Badan Chandra Roy Bari',
-      'Chorbagan Seal Bari & Mitra Bari',
-      'Shibkrishna Daw Bari & Narsingha Daw Bari (Banduk Bari)',
-      'Maniktala Saha Bari & Chhatubabu-Latubabu Bari',
-      'Kheyal Bhavan, Ghosh Bari & Har Kutir (Pathuriaghata)',
-      'Shobhabazar Rajbari (Borotaraf & Chhototaraf)',
-      'Thanthania Dutta Bari & Laha Bari',
-    ],
-    highlights: [
-      'Guided visit across 17 historic Bonedi Bari Puja premises',
-      'Royal Grand Lunch at Shobhabazar Rajbari (Borotaraf)',
-      'Comfortable AC Luxury Mini Bus travel throughout the day',
-      'Complimentary morning breakfast packet and refreshments',
-      'Photographic exploration of Thakurdalans and century-old architecture',
-    ],
-  },
-  {
-    id: 'north-kolkata-walk',
-    title: 'North Kolkata Colonial Heritage & Food Trail',
-    subtitle: 'Morning Architectural Walk through Sovabazar & Pathuriaghata',
-    date: 'Every Weekend (Saturday & Sunday)',
-    time: '07:00 AM – 10:30 AM',
-    pickup: 'Sovabazar Metro Station Gate 1',
-    transport: 'Guided Walking Exploration',
-    food: 'Traditional Morning Kochuri-Jilipi & Clay pot Cha',
-    priceVeg: '₹450',
-    priceNonVeg: '₹450',
-    bonediList: [],
-    highlights: [
-      'Explore hidden alleyways of Sovabazar and Pathuriaghata Rajbaris',
-      'Stories of Bengal renaissance figures and trade merchants',
-      'Traditional heritage breakfast at legendary 100-year-old eateries',
-    ],
-  },
-];
+const specialEvents: any[] = [];
 
 export default function EventsPage() {
   return (
@@ -74,7 +25,12 @@ export default function EventsPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
-        {specialEvents.map((event) => (
+        {specialEvents.length === 0 ? (
+          <div className="text-center py-16 text-stone-500 text-sm bg-white rounded-3xl border border-sand">
+            No active events or parikramas scheduled at the moment. Please check back soon or contact us directly.
+          </div>
+        ) : (
+          specialEvents.map((event) => (
           <div
             key={event.id}
             className="bg-white rounded-3xl border border-sand shadow-md overflow-hidden grid grid-cols-1 lg:grid-cols-12"
@@ -201,7 +157,8 @@ export default function EventsPage() {
               </div>
             </div>
           </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

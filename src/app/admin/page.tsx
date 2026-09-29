@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { PlusCircle, List, Send, RefreshCw, CheckCircle2 } from 'lucide-react';
 
-export const dynamic = 'force-dynamic';
-
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState<'create' | 'bookings' | 'custom'>('create');
   const [loading, setLoading] = useState(false);

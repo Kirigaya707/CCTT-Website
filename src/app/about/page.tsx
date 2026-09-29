@@ -1,7 +1,5 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-
 import React from 'react';
 import Link from 'next/link';
 import { Compass, Heart, ShieldCheck } from 'lucide-react';

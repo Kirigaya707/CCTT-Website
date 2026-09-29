@@ -1,7 +1,5 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-
 import React from 'react';
 import { Calendar, MapPin, Clock, Bus, Utensils, MessageSquare, PhoneCall, CheckCircle2 } from 'lucide-react';
 
@@ -74,7 +72,7 @@ export default function EventsPage() {
                   Key Event Highlights
                 </h3>
                 <ul className="space-y-2 text-xs text-stone-600">
-                  {event.highlights.map((h, i) => (
+                  {event.highlights.map((h: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
                       <span>{h}</span>
@@ -89,7 +87,7 @@ export default function EventsPage() {
                     17 Covered Bonedi Bari Destinations:
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-stone-700">
-                    {event.bonediList.map((item, idx) => (
+                    {event.bonediList.map((item: string, idx: number) => (
                       <div key={idx} className="flex items-center gap-1.5">
                         <span className="w-4 h-4 rounded-full bg-terracotta/10 text-terracotta font-bold text-[9px] flex items-center justify-center flex-shrink-0">
                           {idx + 1}

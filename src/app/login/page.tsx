@@ -1,13 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { supabase } from '@/lib/supabase';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { KeyRound, Mail, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 
-export default function LoginPage() {
+function AuthForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [mode, setMode] = useState<'login' | 'signup' | 'forgot'>('login');
+
+  useEffect(() => {
+    const paramMode = searchParams.get('mode');
+    if (paramMode === 'signup' || paramMode === 'forgot' || paramMode === 'login') {
+      setMode(paramMode);
+    }
+  }, [searchParams]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -186,5 +194,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[80vh] flex items-center justify-center bg-cream text-xs text-stone-500">Loading...</div>}>
+      <AuthForm />
+    </Suspense>
   );
 }

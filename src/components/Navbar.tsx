@@ -74,30 +74,52 @@ export default function Navbar() {
           <Link href="/about" className="hover:text-terracotta transition-colors">About Us</Link>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-2.5">
           {isLoggedIn ? (
             <>
-              <Link href="/profile" className="px-3.5 py-2 rounded-full border border-moss-dark/20 text-moss-dark hover:bg-sand transition-all text-xs font-bold">
+              <Link
+                href="/profile"
+                className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
+              >
                 {userName.split(" ")[0]}
               </Link>
               <button
                 type="button"
                 onClick={() => signOut({ callbackUrl: '/' })}
-                className="px-3.5 py-2 rounded-full border border-moss-dark/20 text-moss-dark hover:bg-sand transition-all text-xs font-bold"
+                className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
               >
                 Sign Out
               </button>
             </>
           ) : (
-            <Link href="/login" className="px-3.5 py-2 rounded-full border border-moss-dark/20 text-moss-dark hover:bg-sand transition-all text-xs font-bold">
-              Login
-            </Link>
+            <>
+              <Link
+                href="/login"
+                className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
+              >
+                Login
+              </Link>
+              <Link
+                href="/login?mode=signup"
+                className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
+              >
+                Sign Up
+              </Link>
+            </>
           )}
 
-          <Link href="/admin" className="px-3.5 py-2 rounded-full border border-terracotta text-terracotta hover:bg-terracotta/10 transition-all text-xs font-bold">
+          <Link
+            href="/admin"
+            className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
+          >
             Admin
           </Link>
-          <Link href="/tours" className="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-dark text-white font-medium text-xs transition-all shadow-sm">Book Now</Link>
+          <Link
+            href="/tours"
+            className="px-4 py-2 rounded-full bg-moss-dark border border-moss-dark text-white font-bold text-xs hover:bg-moss-dark/90 transition-all shadow-sm"
+          >
+            Book Now
+          </Link>
         </div>
       </div>
     </header>

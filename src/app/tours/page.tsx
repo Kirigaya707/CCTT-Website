@@ -9,6 +9,7 @@ const fallbackTours: any[] = [];
 export default function ToursPage() {
   const [tours, setTours] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   useEffect(() => {
     async function fetchTours() {
@@ -29,6 +30,7 @@ export default function ToursPage() {
             pickup: item.pickup,
             price: `₹${item.price_veg}`,
             badge: item.badge,
+            category: item.category || 'all',
             highlights: item.highlights || [],
           }));
           setTours(formattedData);
@@ -57,13 +59,33 @@ export default function ToursPage() {
         </p>
       </div>
 
+      {/* Experience Vibe Filter */}
+      <div className="max-w-xs mx-auto mb-10 text-left">
+        <label className="block text-[10px] font-extrabold uppercase tracking-widest text-stone-500 mb-1.5">
+          EXPERIENCE VIBE
+        </label>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="w-full bg-sand/30 border border-sand rounded-2xl px-4 py-2.5 text-xs font-serif font-bold text-stone-800 focus:outline-none focus:border-terracotta cursor-pointer"
+        >
+          <option value="all">All Curated Escapes</option>
+          <option value="mountain">Mountain based trips</option>
+          <option value="beach">Beach based trips</option>
+          <option value="forest">Forest based trips</option>
+          <option value="cultural">Cultural and heritage events</option>
+        </select>
+      </div>
+
       {loading ? (
         <div className="text-center py-12 text-stone-500 text-sm">Loading tours...</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tours.map((tour) => (
-            <TourCard key={tour.slug} {...tour} />
-          ))}
+          {tours
+            .filter((tour) => selectedCategory === 'all' || tour.category === selectedCategory)
+            .map((tour) => (
+              <TourCard key={tour.slug} {...tour} />
+            ))}
         </div>
       )}
     </div>

@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #FDFBF7;
-  --foreground: #2A402E;
-  --bg-cream: #FDFBF7;
-  --moss-dark: #2A402E;
-  --terracotta: #C85A32;
-  --gold: #D4AF37;
+  --background: #FAF7F0;
+  --foreground: #302E2A;
+  --bg-cream: #FAF7F0;
+  --moss-dark: #302E2A;
+  --terracotta: #665E55;
+  --gold: #8A8175;
+  --surface-white: #FFFFFF;
+  --border-neutral: #E9E3D9;
 }
 
 html {
@@ -17,24 +19,24 @@ html {
 
 body {
   background-color: var(--bg-cream);
-  color: var(--moss-dark);
+  color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
 /* Glassmorphism Utilities using Design Tokens */
 .glass-panel {
-  background: rgba(253, 251, 247, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(58, 90, 64, 0.12);
+  border: 1px solid rgba(48, 46, 42, 0.12);
 }
 
 .glass-panel-dark {
-  background: rgba(42, 64, 46, 0.90);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  border: 1px solid rgba(48, 46, 42, 0.12);
 }
 
 /* Custom Scrollbar */
@@ -42,9 +44,64 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4EFEA;
+  background: #E9E3D9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3A5A40;
+  background: #81786E;
   border-radius: 4px;
+}
+
+[class~="text-[#D49A3D]"],
+[class~="text-[#0D223A]"],
+[class~="text-[#0D223A]/80"],
+[class~="text-[#0D223A]/70"],
+[class~="text-[#0D223A]/60"],
+[class~="text-[#0D223A]/50"] {
+  color: #302E2A;
+}
+
+[class~="bg-[#0D223A]"],
+[class~="bg-[#25D366]"],
+[class~="bg-[#D49A3D]"] {
+  background-color: #665E55;
+}
+
+[class~="border-[#0D223A]/10"],
+[class~="border-[#0D223A]/20"],
+[class~="border-[#D49A3D]/40"] {
+  border-color: #E9E3D9;
+}
+
+.text-emerald-600,
+.text-emerald-800,
+.text-amber-800,
+.text-amber-500 {
+  color: #625B52;
+}
+
+.bg-emerald-50,
+.bg-amber-100 {
+  background-color: #F1EDE6;
+}
+
+.border-emerald-200 {
+  border-color: #D8D1C7;
+}
+
+.bg-moss-dark {
+  background-color: #FFFFFF;
+  color: #302E2A;
+}
+
+.bg-moss-dark .text-cream,
+.bg-moss-dark .text-white {
+  color: #302E2A;
+}
+
+.bg-moss-dark .border-white\/10 {
+  border-color: #E9E3D9;
+}
+
+.bg-emerald-500 {
+  background-color: #81786E;
 }

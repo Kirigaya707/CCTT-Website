@@ -28,85 +28,57 @@ export default function HomePage() {
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
       <section className="relative bg-cream pt-8 pb-12 px-4 sm:px-6 lg:px-8 border-b border-sand">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7 space-y-6">
-            <h1 className="text-4xl sm:text-6xl font-serif font-bold text-moss-dark leading-tight">
-              Holidaying made <span className="italic text-terracotta">soulful</span>,{' '}
-              <span className="italic text-moss">scenic</span>, & simple.
-            </h1>
-            <p className="text-stone-600 text-base sm:text-lg max-w-xl leading-relaxed">
-              Slow, soulful journeys across Bengal & beyond — from heritage Rajbari Pujas and high Himalayan passes to misty tea estates and mangrove creeks. Unhurried itineraries crafted by locals in Kolkata & Durgapur.
-            </p>
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <h1 className="text-4xl sm:text-6xl font-serif font-bold text-moss-dark leading-tight">
+            Holidaying made <span className="italic text-terracotta">soulful</span>,{' '}
+            <span className="italic text-moss">scenic</span>, & simple.
+          </h1>
+          <p className="text-stone-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Slow, soulful journeys across Bengal & beyond — from heritage Rajbari Pujas and high Himalayan passes to misty tea estates and mangrove creeks. Unhurried itineraries crafted by locals in Kolkata & Durgapur.
+          </p>
 
-            {/* Quick Search Widget */}
-            <div className="bg-white p-4 sm:p-6 rounded-3xl border border-sand shadow-lg space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div>
-                  <label className="block text-stone-400 font-semibold mb-1 uppercase">
-                    Departure Hub
-                  </label>
-                  <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
-                    <option>Kolkata (CCU / Howrah)</option>
-                    <option>Durgapur (DGR / City Centre)</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-stone-400 font-semibold mb-1 uppercase">
-                    Travel Month
-                  </label>
-                  <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
-                    <option>October 2026 (Autumn/Puja)</option>
-                    <option>November 2026</option>
-                    <option>December 2026 (Winter)</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-stone-400 font-semibold mb-1 uppercase">
-                    Experience Vibe
-                  </label>
-                  <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
-                    <option>All Curated Escapes</option>
-                    <option>Heritage & Culture</option>
-                    <option>Himalayan High Passes</option>
-                  </select>
-                </div>
+          {/* Quick Search Widget */}
+          <div className="bg-white p-4 sm:p-6 rounded-3xl border border-sand shadow-lg space-y-4 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div>
+                <label className="block text-stone-400 font-semibold mb-1 uppercase">
+                  Departure Hub
+                </label>
+                <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
+                  <option>Kolkata (CCU / Howrah)</option>
+                  <option>Durgapur (DGR / City Centre)</option>
+                </select>
               </div>
-              <Link
-                href="/tours"
-                className="w-full flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold py-3 rounded-xl transition text-sm shadow-sm"
-              >
-                <Search className="w-4 h-4" />
-                Find Expeditions
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Hero Feature Card */}
-          <div className="lg:col-span-5">
-            <div className="bg-moss-dark text-cream p-8 rounded-3xl border border-gold/30 shadow-2xl relative overflow-hidden space-y-6">
-              <span className="bg-gold text-moss-dark text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest">
-                WINTER DEPARTURES ACTIVE
-              </span>
-              <h3 className="text-3xl font-serif font-bold text-white leading-snug">
-                Zuluk Silk Route Lodge & Pass
-              </h3>
-              <p className="text-cream/80 text-xs sm:text-sm leading-relaxed">
-                Experience high altitude snowlines, ancient trade paths, and warm Sikkimese wooden homestays with fresh Bengali meals prepared daily.
-              </p>
-
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                <div>
-                  <span className="text-xs text-stone-300 block">5 Days / 4 Nights</span>
-                  <span className="text-2xl font-serif font-bold text-gold">₹14,999</span>
-                </div>
-                <Link
-                  href="/tours/durga-puja-parikrama"
-                  className="px-5 py-2.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-bold text-xs transition"
-                >
-                  Explore Circuit
-                </Link>
+              <div>
+                <label className="block text-stone-400 font-semibold mb-1 uppercase">
+                  Travel Month
+                </label>
+                <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
+                  <option>October 2026 (Autumn/Puja)</option>
+                  <option>November 2026</option>
+                  <option>December 2026 (Winter)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-stone-400 font-semibold mb-1 uppercase">
+                  Experience Vibe
+                </label>
+                <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
+                  <option value="all">All Curated Escapes</option>
+                  <option value="mountain">Mountain based trips</option>
+                  <option value="beach">Beach based trips</option>
+                  <option value="forest">Forest based trips</option>
+                  <option value="cultural">Cultural and heritage events</option>
+                </select>
               </div>
             </div>
+            <Link
+              href="/tours"
+              className="w-full flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold py-3 rounded-xl transition text-sm shadow-sm"
+            >
+              <Search className="w-4 h-4" />
+              Find Expeditions
+            </Link>
           </div>
         </div>
       </section>

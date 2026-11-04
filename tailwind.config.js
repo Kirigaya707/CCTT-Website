@@ -9,11 +9,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        terracotta: { DEFAULT: "#C85A32", light: "#D96B43", dark: "#A34320" },
-        moss: { DEFAULT: "#3A5A40", light: "#588157", dark: "#2A402E" },
-        gold: { DEFAULT: "#D4AF37", light: "#F3E5AB", dark: "#AA820A" },
-        cream: "#FDFBF7",
-        sand: "#F4EFEA",
+        terracotta: { DEFAULT: "#665E55", light: "#81786E", dark: "#4D4740" },
+        moss: { DEFAULT: "#4A4640", light: "#625D56", dark: "#302E2A" },
+        gold: { DEFAULT: "#8A8175", light: "#D8D1C7", dark: "#625B52" },
+        cream: "#FAF7F0",
+        sand: "#E9E3D9",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "sans-serif"],

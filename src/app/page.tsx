@@ -21,8 +21,21 @@ import TourCard from '@/components/TourCard';
 
 const curatedTours: any[] = [];
 
+const monthsList = [
+  'Oct 2026',
+  'Nov 2026',
+  'Dec 2026',
+  'Jan 2027',
+  'Feb 2027',
+  'Mar 2027',
+  'Apr 2027',
+  'May 2027',
+  'Jun 2027',
+];
+
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('All');
+  const [selectedMonthIdx, setSelectedMonthIdx] = useState(0);
 
   return (
     <div className="space-y-16 pb-16">
@@ -39,37 +52,41 @@ export default function HomePage() {
 
           {/* Quick Search Widget */}
           <div className="bg-white p-4 sm:p-6 rounded-3xl border border-sand shadow-lg space-y-4 text-left">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs items-center">
               <div>
                 <label className="block text-stone-400 font-semibold mb-1 uppercase">
                   Departure Hub
                 </label>
-                <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
+                <select className="w-full bg-sand/40 border border-sand rounded-xl p-3 font-bold text-moss-dark focus:outline-none focus:border-terracotta cursor-pointer">
                   <option>Kolkata (CCU / Howrah)</option>
                   <option>Durgapur (DGR / City Centre)</option>
                 </select>
               </div>
+
               <div>
-                <label className="block text-stone-400 font-semibold mb-1 uppercase">
-                  Travel Month
-                </label>
-                <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
-                  <option>October 2026 (Autumn/Puja)</option>
-                  <option>November 2026</option>
-                  <option>December 2026 (Winter)</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-stone-400 font-semibold mb-1 uppercase">
-                  Experience Vibe
-                </label>
-                <select className="w-full bg-sand/40 border border-sand rounded-xl p-2.5 font-bold text-moss-dark">
-                  <option value="all">All Curated Escapes</option>
-                  <option value="mountain">Mountain based trips</option>
-                  <option value="beach">Beach based trips</option>
-                  <option value="forest">Forest based trips</option>
-                  <option value="cultural">Cultural and heritage events</option>
-                </select>
+                <div className="flex justify-between items-center mb-1">
+                  <label className="block text-stone-400 font-semibold uppercase">
+                    Travel Month
+                  </label>
+                  <span className="flex items-center gap-1.5 bg-sand/60 px-3 py-1 rounded-xl text-moss-dark font-bold font-serif text-xs border border-sand">
+                    <Calendar className="w-3.5 h-3.5 text-terracotta" />
+                    {monthsList[selectedMonthIdx]}
+                  </span>
+                </div>
+                <div className="pt-2">
+                  <input
+                    type="range"
+                    min="0"
+                    max={monthsList.length - 1}
+                    value={selectedMonthIdx}
+                    onChange={(e) => setSelectedMonthIdx(Number(e.target.value))}
+                    className="w-full accent-terracotta cursor-pointer h-2 bg-sand/60 rounded-lg"
+                  />
+                  <div className="flex justify-between text-[10px] text-stone-400 mt-1 font-bold">
+                    <span>{monthsList[0]}</span>
+                    <span>{monthsList[monthsList.length - 1]}</span>
+                  </div>
+                </div>
               </div>
             </div>
             <Link

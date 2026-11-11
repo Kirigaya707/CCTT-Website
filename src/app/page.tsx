@@ -10,33 +10,19 @@ import {
   HeartHandshake,
   Search,
   MapPin,
-  Calendar,
   Users,
-  ChevronLeft,
   ChevronRight,
   Star,
   PhoneCall,
   CheckCircle2,
 } from 'lucide-react';
 import TourCard from '@/components/TourCard';
+import { RangeCalendar } from '@/components/RangeCalendar';
 
 const curatedTours: any[] = [];
 
-const monthsList = [
-  { month: 'October', year: '2026', label: 'October 2026' },
-  { month: 'November', year: '2026', label: 'November 2026' },
-  { month: 'December', year: '2026', label: 'December 2026' },
-  { month: 'January', year: '2027', label: 'January 2027' },
-  { month: 'February', year: '2027', label: 'February 2027' },
-  { month: 'March', year: '2027', label: 'March 2027' },
-  { month: 'April', year: '2027', label: 'April 2027' },
-  { month: 'May', year: '2027', label: 'May 2027' },
-  { month: 'June', year: '2027', label: 'June 2027' },
-];
-
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('All');
-  const [selectedMonthIdx, setSelectedMonthIdx] = useState(1);
 
   return (
     <div className="space-y-16 pb-16">
@@ -64,47 +50,12 @@ export default function HomePage() {
                 </select>
               </div>
 
-              <div>
-                <label className="block text-stone-400 font-semibold mb-1 uppercase">
-                  Travel Month
+              <div className="col-span-full">
+                <label className="mb-2 block text-xs font-semibold uppercase text-stone-400">
+                  Select Travel Date Range
                 </label>
-                <div className="bg-sand/30 border border-sand rounded-2xl p-2 flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedMonthIdx((prev) => Math.max(0, prev - 1))}
-                      disabled={selectedMonthIdx === 0}
-                      className="p-1.5 rounded-lg hover:bg-sand/60 disabled:opacity-30 text-stone-600 transition"
-                      aria-label="Previous Month"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedMonthIdx((prev) => Math.min(monthsList.length - 1, prev + 1))}
-                      disabled={selectedMonthIdx === monthsList.length - 1}
-                      className="p-1.5 rounded-lg hover:bg-sand/60 disabled:opacity-30 text-stone-600 transition"
-                      aria-label="Next Month"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedMonthIdx(1)}
-                      className="px-2 py-1 rounded-md text-[10px] font-bold text-stone-500 hover:bg-sand/60 transition"
-                    >
-                      Today
-                    </button>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 font-serif font-bold text-moss-dark text-sm px-2">
-                    <Calendar className="w-4 h-4 text-terracotta" />
-                    <span>{monthsList[selectedMonthIdx].label}</span>
-                  </div>
-
-                  <span className="text-[10px] font-bold text-moss-dark bg-sand/80 px-2 py-0.5 rounded-md uppercase border border-sand">
-                    Month
-                  </span>
+                <div className="flex justify-center overflow-x-auto pb-2">
+                  <RangeCalendar aria-label="Range calendar" />
                 </div>
               </div>
             </div>

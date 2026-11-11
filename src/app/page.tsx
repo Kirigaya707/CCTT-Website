@@ -12,6 +12,7 @@ import {
   MapPin,
   Calendar,
   Users,
+  ChevronLeft,
   ChevronRight,
   Star,
   PhoneCall,
@@ -22,20 +23,20 @@ import TourCard from '@/components/TourCard';
 const curatedTours: any[] = [];
 
 const monthsList = [
-  'Oct 2026',
-  'Nov 2026',
-  'Dec 2026',
-  'Jan 2027',
-  'Feb 2027',
-  'Mar 2027',
-  'Apr 2027',
-  'May 2027',
-  'Jun 2027',
+  { month: 'October', year: '2026', label: 'October 2026' },
+  { month: 'November', year: '2026', label: 'November 2026' },
+  { month: 'December', year: '2026', label: 'December 2026' },
+  { month: 'January', year: '2027', label: 'January 2027' },
+  { month: 'February', year: '2027', label: 'February 2027' },
+  { month: 'March', year: '2027', label: 'March 2027' },
+  { month: 'April', year: '2027', label: 'April 2027' },
+  { month: 'May', year: '2027', label: 'May 2027' },
+  { month: 'June', year: '2027', label: 'June 2027' },
 ];
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('All');
-  const [selectedMonthIdx, setSelectedMonthIdx] = useState(0);
+  const [selectedMonthIdx, setSelectedMonthIdx] = useState(1);
 
   return (
     <div className="space-y-16 pb-16">
@@ -64,28 +65,46 @@ export default function HomePage() {
               </div>
 
               <div>
-                <div className="flex justify-between items-center mb-1">
-                  <label className="block text-stone-400 font-semibold uppercase">
-                    Travel Month
-                  </label>
-                  <span className="flex items-center gap-1.5 bg-sand/60 px-3 py-1 rounded-xl text-moss-dark font-bold font-serif text-xs border border-sand">
-                    <Calendar className="w-3.5 h-3.5 text-terracotta" />
-                    {monthsList[selectedMonthIdx]}
-                  </span>
-                </div>
-                <div className="pt-2">
-                  <input
-                    type="range"
-                    min="0"
-                    max={monthsList.length - 1}
-                    value={selectedMonthIdx}
-                    onChange={(e) => setSelectedMonthIdx(Number(e.target.value))}
-                    className="w-full accent-terracotta cursor-pointer h-2 bg-sand/60 rounded-lg"
-                  />
-                  <div className="flex justify-between text-[10px] text-stone-400 mt-1 font-bold">
-                    <span>{monthsList[0]}</span>
-                    <span>{monthsList[monthsList.length - 1]}</span>
+                <label className="block text-stone-400 font-semibold mb-1 uppercase">
+                  Travel Month
+                </label>
+                <div className="bg-sand/30 border border-sand rounded-2xl p-2 flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedMonthIdx((prev) => Math.max(0, prev - 1))}
+                      disabled={selectedMonthIdx === 0}
+                      className="p-1.5 rounded-lg hover:bg-sand/60 disabled:opacity-30 text-stone-600 transition"
+                      aria-label="Previous Month"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedMonthIdx((prev) => Math.min(monthsList.length - 1, prev + 1))}
+                      disabled={selectedMonthIdx === monthsList.length - 1}
+                      className="p-1.5 rounded-lg hover:bg-sand/60 disabled:opacity-30 text-stone-600 transition"
+                      aria-label="Next Month"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedMonthIdx(1)}
+                      className="px-2 py-1 rounded-md text-[10px] font-bold text-stone-500 hover:bg-sand/60 transition"
+                    >
+                      Today
+                    </button>
                   </div>
+
+                  <div className="flex items-center gap-1.5 font-serif font-bold text-moss-dark text-sm px-2">
+                    <Calendar className="w-4 h-4 text-terracotta" />
+                    <span>{monthsList[selectedMonthIdx].label}</span>
+                  </div>
+
+                  <span className="text-[10px] font-bold text-moss-dark bg-sand/80 px-2 py-0.5 rounded-md uppercase border border-sand">
+                    Month
+                  </span>
                 </div>
               </div>
             </div>

@@ -74,9 +74,7 @@ export default function CustomItineraryPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Main Form Area */}
-          <div className="lg:col-span-8 space-y-10">
+        <div className="max-w-4xl mx-auto space-y-10">
             {/* STEP 1: Departure Hub */}
             <section className="bg-white p-6 sm:p-8 rounded-3xl border border-sand shadow-sm space-y-4">
               <div className="flex items-center justify-between">
@@ -519,130 +517,51 @@ export default function CustomItineraryPage() {
                 </div>
               </div>
             </section>
-          </div>
 
-          {/* Right Sticky Summary Box */}
-          <div className="lg:col-span-4">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-sand shadow-xl sticky top-24 space-y-6">
-              <div className="flex items-center justify-between border-b border-sand pb-4">
-                <div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-terracotta">
-                    LIVE CALCULATION
-                  </span>
-                  <h3 className="text-2xl font-serif font-bold text-moss-dark">
-                    Custom Circuit Summary
-                  </h3>
-                </div>
-              </div>
+            {/* Bottom Actions Section */}
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-sand shadow-sm space-y-4 text-center">
+              <button
+                type="button"
+                onClick={async () => {
+                  try {
+                    const { supabase } = await import('@/lib/supabase');
+                    await supabase.from('custom_requests').insert([
+                      {
+                        user_email: 'guest@chutichuti.in',
+                        hub,
+                        companions,
+                        landscape,
+                        comforts,
+                        vehicle_type: vehicle.name,
+                        guests,
+                        nights,
+                        estimated_budget: perGuestBudget,
+                      },
+                    ]);
+                  } catch (err) {
+                    console.error('Supabase logging error:', err);
+                  }
 
-              <div className="space-y-3 text-xs">
-                <div className="flex justify-between py-2 border-b border-sand/60">
-                  <span className="text-stone-500">Departure Hub:</span>
-                  <span className="font-bold text-moss-dark capitalize">
-                    {hub === 'kolkata' ? 'Kolkata Metropolitan' : 'Durgapur / Bardhaman'}
-                  </span>
-                </div>
+                  const message = encodeURIComponent(
+                    `Hi Chuti Chuti! I want to plan a custom trip.\nHub: ${hub}\nGuests: ${guests}\nNights: ${nights}\nLandscape: ${landscape}\nVehicle: ${vehicle.name}\nBudget: ₹${perGuestBudget}/guest`
+                  );
+                  window.open(`https://wa.me/919830072946?text=${message}`, '_blank');
+                }}
+                className="w-full flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold py-4 px-6 rounded-2xl transition shadow-md text-sm sm:text-base"
+              >
+                <MessageSquare className="w-5 h-5" />
+                Get WhatsApp Itinerary in 2 Hours
+              </button>
 
-                <div className="flex justify-between py-2 border-b border-sand/60">
-                  <span className="text-stone-500">Curated Circuit:</span>
-                  <span className="font-bold text-moss-dark text-right">{landscape}</span>
-                </div>
-
-                <div className="flex justify-between py-2 border-b border-sand/60">
-                  <span className="text-stone-500">Travelers & Nights:</span>
-                  <span className="font-bold text-moss-dark">
-                    {guests} Guests / {nights}N / {nights + 1}D
-                  </span>
-                </div>
-
-                <div className="flex justify-between py-2 border-b border-sand/60">
-                  <span className="text-stone-500">Assigned Vehicle:</span>
-                  <span className="font-bold text-moss-dark">{vehicle.name}</span>
-                </div>
-              </div>
-
-              <div className="bg-sand/50 p-4 rounded-2xl space-y-2">
-                <span className="text-[10px] font-bold uppercase text-stone-400 tracking-wider block">
-                  INCLUDED COMFORT & CARE TAGS
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md">
-                    ✓ Bengali Meal Option
-                  </span>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md">
-                    ✓ Senior-Friendly Ground Driver
-                  </span>
-                </div>
-              </div>
-
-              <div className="pt-2 border-t border-sand">
-                <div className="flex justify-between items-baseline mb-1">
-                  <span className="text-xs text-stone-500">Estimated Total (Entire Group):</span>
-                  <span className="text-2xl font-serif font-bold text-terracotta">
-                    ₹{totalEstimate.toLocaleString('en-IN')}
-                  </span>
-                </div>
-                <p className="text-[11px] text-stone-400">
-                  *Final quote delivered after driver route verification. Includes all toll taxes, driver allowance, and permits.
-                </p>
-              </div>
-
-              <div className="space-y-3 pt-2">
-                <button
-                  type="button"
-                  onClick={async () => {
-                    try {
-                      const { supabase } = await import('@/lib/supabase');
-                      await supabase.from('custom_requests').insert([
-                        {
-                          user_email: 'guest@chutichuti.in',
-                          hub,
-                          companions,
-                          landscape,
-                          comforts,
-                          vehicle_type: vehicle.name,
-                          guests,
-                          nights,
-                          estimated_budget: perGuestBudget,
-                        },
-                      ]);
-                    } catch (err) {
-                      console.error('Supabase logging error:', err);
-                    }
-
-                    const message = encodeURIComponent(
-                      `Hi Chuti Chuti! I want to plan a custom trip.\nHub: ${hub}\nGuests: ${guests}\nNights: ${nights}\nLandscape: ${landscape}\nVehicle: ${vehicle.name}\nBudget: ₹${perGuestBudget}/guest`
-                    );
-                    window.open(`https://wa.me/919830072946?text=${message}`, '_blank');
-                  }}
-                  className="w-full flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold py-3.5 px-4 rounded-2xl transition shadow-md text-sm"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  Get WhatsApp Itinerary in 2 Hours
-                </button>
-
-                <a
-                  href="tel:+919830072946"
-                  className="w-full flex items-center justify-center gap-2 border border-moss-dark/20 text-moss-dark hover:bg-sand font-semibold py-2.5 px-4 rounded-2xl transition text-xs"
-                >
-                  <PhoneCall className="w-3.5 h-3.5 text-terracotta" />
-                  Speak to Senior Curator at +91 98300 72946
-                </a>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 text-[10px] text-stone-500 border-t border-sand pt-4">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>100% Human Curated</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Sparkles className="w-4 h-4 text-amber-600 flex-shrink-0" />
-                  <span>GST & Tax Transparent</span>
-                </div>
-              </div>
+              <a
+                href="tel:+919830072946"
+                className="w-full flex items-center justify-center gap-2 border border-moss-dark/20 text-moss-dark hover:bg-sand font-semibold py-3 px-4 rounded-2xl transition text-xs sm:text-sm"
+              >
+                <PhoneCall className="w-4 h-4 text-terracotta" />
+                Speak to Senior Curator at +91 98300 72946
+              </a>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );

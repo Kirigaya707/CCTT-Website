@@ -6,10 +6,31 @@ import { supabase } from '@/lib/supabase';
 
 const fallbackTours: any[] = [];
 
+import { isAdmin } from '@/lib/admin';
+
 export default function ToursPage() {
   const [tours, setTours] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function checkUser() {
+      const { data } = await supabase.auth.getUser();
+      setUserEmail(data.user?.email || null);
+    }
+    checkUser();
+  }, []);
+
+  const userIsAdmin = isAdmin(userEmail);
+
+  const handleDeleteTour = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this tour?')) return;
+    const { error } = await supabase.from('tours').delete().eq('id', id);
+    if (!error) {
+      setTours((prev) => prev.filter((t) => t.id !== id));
+    }
+  };
 
   useEffect(() => {
     async function fetchTours() {
@@ -59,6 +80,35 @@ export default function ToursPage() {
         </p>
       </div>
 
+      {/* Admin Add Tour Button */}
+      {userIsAdmin && (
+        <div className="mb-6 text-center">
+          <button
+            onClick={async () => {
+              const title = prompt('Enter Tour Title:');
+              if (!title) return;
+              const price = prompt('Enter Veg Price (₹):', '5000');
+              const category = prompt('Enter Category (mountain/beach/forest/cultural):', 'mountain');
+              const { data, error } = await supabase.from('tours').insert([
+                {
+                  title,
+                  slug: title.toLowerCase().replace(/[^a-z0-0]+/g, '-'),
+                  price_veg: price || '0',
+                  category: category || 'mountain',
+                  is_active: true,
+                },
+              ]).select();
+              if (!error && data) {
+                setTours((prev) => [...prev, data[0]]);
+              }
+            }}
+            className="px-4 py-2 bg-terracotta text-white text-xs font-bold rounded-xl shadow hover:bg-terracotta-dark transition"
+          >
+            + Add New Tour (Admin Only)
+          </button>
+        </div>
+      )}
+
       {/* Experience Vibe Filter */}
       <div className="max-w-xs mx-auto mb-10 text-left">
         <label className="block text-[10px] font-extrabold uppercase tracking-widest text-stone-500 mb-1.5">
@@ -84,7 +134,17 @@ export default function ToursPage() {
           {tours
             .filter((tour) => selectedCategory === 'all' || tour.category === selectedCategory)
             .map((tour) => (
-              <TourCard key={tour.slug} {...tour} />
+              <div key={tour.slug || tour.id} className="relative group">
+                <TourCard {...tour} />
+                {userIsAdmin && (
+                  <button
+                    onClick={() => handleDeleteTour(tour.id)}
+                    className="absolute top-3 right-3 bg-rose-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow hover:bg-rose-700 transition"
+                  >
+                    Delete (Admin)
+                  </button>
+                )}
+              </div>
             ))}
         </div>
       )}

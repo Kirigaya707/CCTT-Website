@@ -109,12 +109,6 @@ export default function Navbar() {
           )}
 
           <Link
-            href="/admin"
-            className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
-          >
-            Admin
-          </Link>
-          <Link
             href="/tours"
             className="px-4 py-2 rounded-full bg-moss-dark border border-moss-dark text-white font-bold text-xs hover:bg-moss-dark/90 transition-all shadow-sm"
           >

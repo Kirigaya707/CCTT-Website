@@ -31,7 +31,9 @@ export default function CustomItineraryPage() {
     type: 'MUV',
     pricePerDay: 4200,
   });
-  const [guests, setGuests] = useState(4);
+  const [adults, setAdults] = useState(4);
+  const [kids, setKids] = useState(0);
+  const guests = adults + kids;
   const [nights, setNights] = useState(4);
   const [perGuestBudget, setPerGuestBudget] = useState(16500);
 
@@ -140,7 +142,7 @@ export default function CustomItineraryPage() {
               </div>
             </section>
 
-            {/* STEP 2: Companion Style */}
+            {/* STEP 2: Travelers Breakdown */}
             <section className="bg-white p-6 sm:p-8 rounded-3xl border border-sand shadow-sm space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -152,35 +154,75 @@ export default function CustomItineraryPage() {
                   </h2>
                 </div>
                 <span className="text-xs font-semibold uppercase text-stone-400 tracking-wider">
-                  STYLE & PACE
+                  GUEST COUNT
                 </span>
               </div>
 
-              <div className="flex flex-wrap gap-3 pt-2">
-                {[
-                  'Family Vacation with Elders',
-                  'Quick Weekend Escape (2N/3N)',
-                  'Rajbari & Heritage Trail',
-                  'Quiet Retreats & Offbeats',
-                  'Himalayan Silk Road & Pass',
-                ].map((tag) => {
-                  const isSelected = companions.includes(tag);
-                  return (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                {/* Adults Counter */}
+                <div className="bg-sand/40 p-4 rounded-2xl border border-sand text-center">
+                  <span className="text-xs font-bold text-stone-600 uppercase block mb-2">
+                    Adults (12+ yrs)
+                  </span>
+                  <div className="flex items-center justify-center gap-4">
                     <button
-                      key={tag}
                       type="button"
-                      onClick={() => toggleCompanion(tag)}
-                      className={`px-4 py-2.5 rounded-xl text-xs font-medium transition-all ${
-                        isSelected
-                          ? 'bg-moss-dark text-gold border border-moss-dark shadow-sm'
-                          : 'bg-sand/60 text-stone-700 border border-sand hover:bg-sand'
-                      }`}
+                      onClick={() => setAdults((a) => Math.max(1, a - 1))}
+                      className="w-8 h-8 rounded-full bg-white border border-stone-300 font-bold text-moss-dark hover:bg-stone-100"
                     >
-                      {isSelected && <Check className="w-3.5 h-3.5 inline mr-1.5 text-gold" />}
-                      {tag}
+                      -
                     </button>
-                  );
-                })}
+                    <span className="text-2xl font-serif font-bold text-moss-dark">
+                      {adults}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setAdults((a) => a + 1)}
+                      className="w-8 h-8 rounded-full bg-white border border-stone-300 font-bold text-moss-dark hover:bg-stone-100"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                {/* Kids Counter */}
+                <div className="bg-sand/40 p-4 rounded-2xl border border-sand text-center">
+                  <span className="text-xs font-bold text-stone-600 uppercase block mb-2">
+                    Kids (Below 12 yrs)
+                  </span>
+                  <div className="flex items-center justify-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setKids((k) => Math.max(0, k - 1))}
+                      className="w-8 h-8 rounded-full bg-white border border-stone-300 font-bold text-moss-dark hover:bg-stone-100"
+                    >
+                      -
+                    </button>
+                    <span className="text-2xl font-serif font-bold text-moss-dark">
+                      {kids}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setKids((k) => k + 1)}
+                      className="w-8 h-8 rounded-full bg-white border border-stone-300 font-bold text-moss-dark hover:bg-stone-100"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                {/* Total Head Counter */}
+                <div className="bg-terracotta/10 p-4 rounded-2xl border border-terracotta/30 text-center flex flex-col justify-center items-center">
+                  <span className="text-xs font-extrabold text-terracotta uppercase block mb-1">
+                    Total Head Count
+                  </span>
+                  <span className="text-3xl font-serif font-bold text-moss-dark">
+                    {adults + kids}
+                  </span>
+                  <span className="text-[10px] text-stone-500 font-bold mt-0.5 uppercase tracking-wider">
+                    {adults + kids === 1 ? 'Guest' : 'Guests'} Total
+                  </span>
+                </div>
               </div>
             </section>
 
@@ -425,30 +467,16 @@ export default function CustomItineraryPage() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="bg-sand/40 p-4 rounded-2xl border border-sand text-center">
-                  <span className="text-xs font-semibold text-stone-500 uppercase block mb-2">
-                    Number of Guests
+                <div className="bg-sand/40 p-4 rounded-2xl border border-sand text-center flex flex-col justify-center items-center">
+                  <span className="text-xs font-semibold text-stone-500 uppercase block mb-1">
+                    Total Guests
                   </span>
-                  <div className="flex items-center justify-center gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setGuests((g) => Math.max(1, g - 1))}
-                      className="w-8 h-8 rounded-full bg-white border border-stone-300 font-bold text-moss-dark hover:bg-stone-100"
-                    >
-                      -
-                    </button>
-                    <span className="text-2xl font-serif font-bold text-moss-dark">
-                      {guests}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setGuests((g) => g + 1)}
-                      className="w-8 h-8 rounded-full bg-white border border-stone-300 font-bold text-moss-dark hover:bg-stone-100"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <span className="text-[10px] text-stone-400 mt-1 block">Adults & Children</span>
+                  <span className="text-2xl font-serif font-bold text-moss-dark">
+                    {guests}
+                  </span>
+                  <span className="text-[10px] text-stone-400 mt-1 block">
+                    {adults} {adults === 1 ? 'Adult' : 'Adults'} • {kids} {kids === 1 ? 'Kid' : 'Kids'}
+                  </span>
                 </div>
 
                 <div className="bg-sand/40 p-4 rounded-2xl border border-sand text-center">

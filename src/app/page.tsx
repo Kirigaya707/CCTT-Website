@@ -221,7 +221,7 @@ export default function HomePage() {
             GUEST REVIEWS
           </span>
           <h2 className="text-3xl font-serif font-bold text-moss-dark">
-            Stories from Salt Lake to Durgapur
+            Stories from our beloved Customers
           </h2>
         </div>
 

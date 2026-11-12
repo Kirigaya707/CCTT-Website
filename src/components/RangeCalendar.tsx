@@ -61,7 +61,7 @@ export function RangeCalendar({ 'aria-label': ariaLabel = 'Range calendar', onRa
             <button
               onClick={prevMonth}
               type="button"
-              className="rounded-lg p-1.5 text-stone-600 transition hover:bg-sand/60"
+              className="rounded-full p-1.5 text-zinc-700 transition hover:bg-zinc-100"
               aria-label="Previous Month"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -70,7 +70,7 @@ export function RangeCalendar({ 'aria-label': ariaLabel = 'Range calendar', onRa
             <div className="w-7" />
           )}
 
-          <h3 className="font-serif text-sm font-bold text-stone-800">
+          <h3 className="text-sm font-semibold tracking-tight text-zinc-950">
             {monthName} {year}
           </h3>
 
@@ -78,7 +78,7 @@ export function RangeCalendar({ 'aria-label': ariaLabel = 'Range calendar', onRa
             <button
               onClick={nextMonth}
               type="button"
-              className="rounded-lg p-1.5 text-stone-600 transition hover:bg-sand/60"
+              className="rounded-full p-1.5 text-zinc-700 transition hover:bg-zinc-100"
               aria-label="Next Month"
             >
               <ChevronRight className="h-4 w-4" />
@@ -88,7 +88,7 @@ export function RangeCalendar({ 'aria-label': ariaLabel = 'Range calendar', onRa
           )}
         </div>
 
-        <div className="mb-2 grid grid-cols-7 gap-1 text-center text-xs font-semibold text-stone-500">
+        <div className="mb-2 grid grid-cols-7 gap-1 text-center text-xs font-medium text-zinc-400">
           <span>Su</span>
           <span>Mo</span>
           <span>Tu</span>
@@ -111,24 +111,24 @@ export function RangeCalendar({ 'aria-label': ariaLabel = 'Range calendar', onRa
               rangeStart && rangeEnd && time > rangeStart.getTime() && time < rangeEnd.getTime();
 
             let buttonStyle =
-              'mx-auto flex h-8 w-8 items-center justify-center rounded-full font-medium text-stone-700 transition hover:bg-sand/60';
+              'mx-auto flex h-8 w-8 items-center justify-center rounded-full font-medium text-zinc-700 transition hover:bg-zinc-100';
             let wrapperStyle = '';
 
             if (isStart || isEnd) {
               buttonStyle =
-                'relative mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-terracotta font-bold text-white shadow-sm';
+                'relative mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-zinc-950 font-semibold text-white';
             }
 
             if (isInRange) {
-              wrapperStyle = 'bg-sand/40';
-              buttonStyle = 'mx-auto flex h-8 w-8 items-center justify-center font-semibold text-stone-800';
+              wrapperStyle = 'bg-zinc-100';
+              buttonStyle = 'mx-auto flex h-8 w-8 items-center justify-center font-medium text-zinc-900';
             }
 
             if (isStart && rangeEnd) {
-              wrapperStyle = 'rounded-l-full bg-sand/40';
+              wrapperStyle = 'rounded-l-full bg-zinc-100';
             }
             if (isEnd && rangeStart) {
-              wrapperStyle = 'rounded-r-full bg-sand/40';
+              wrapperStyle = 'rounded-r-full bg-zinc-100';
             }
 
             return (
@@ -148,10 +148,10 @@ export function RangeCalendar({ 'aria-label': ariaLabel = 'Range calendar', onRa
   return (
     <div
       aria-label={ariaLabel}
-      className="inline-flex flex-col items-center gap-8 rounded-3xl border border-sand bg-white p-6 text-left shadow-xl md:flex-row"
+      className="inline-flex flex-col items-center gap-8 rounded-3xl border border-zinc-200 bg-white p-6 text-left shadow-sm md:flex-row"
     >
       {renderMonth(firstMonth, true, false)}
-      <div className="hidden h-64 w-px bg-sand/60 md:block" />
+      <div className="hidden h-64 w-px bg-zinc-200 md:block" />
       {renderMonth(secondMonth, false, true)}
     </div>
   );

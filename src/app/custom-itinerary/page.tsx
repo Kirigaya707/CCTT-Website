@@ -52,26 +52,26 @@ export default function CustomItineraryPage() {
   };
 
   return (
-    <div className="bg-cream text-stone-900 min-h-screen py-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white px-4 py-12 text-zinc-950 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Page Header */}
-        <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-sand pb-8">
+        <div className="mx-auto mb-10 flex max-w-4xl flex-col justify-between gap-4 border-b border-zinc-200 pb-8 md:flex-row md:items-end">
           <div>
-            <span className="text-xs font-bold tracking-widest text-terracotta uppercase block mb-2">
-              BESPOKE BENGALI CURATION STUDIO
+            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest text-zinc-400">
+              BESPOKE CURATION STUDIO
             </span>
-            <h1 className="text-4xl sm:text-5xl font-serif font-bold text-moss-dark">
-              Craft Your Custom <span className="italic text-terracotta font-serif">Chuti</span>
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-950 sm:text-5xl">
+              Craft Your Custom Chuti
             </h1>
-            <p className="mt-3 text-stone-600 max-w-2xl text-sm sm:text-base leading-relaxed">
-              No rigid group departures or hurried bus tours. Tell our Kolkata & Durgapur trip architects your pace, palate, and companions — we sketch an unhurried, heart-felt route in under 2 hours.
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-500 sm:text-base">
+              No rigid group departures or hurried bus tours. Tell our Kolkata &amp; Durgapur trip architects your pace, palate, and companions — we sketch an unhurried route in under 2 hours.
             </p>
           </div>
-          <div className="bg-sand/60 p-4 rounded-2xl border border-sand flex items-center gap-3 text-xs text-stone-700">
-            <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
+          <div className="flex items-center gap-3 rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-xs text-zinc-700">
+            <div className="h-2.5 w-2.5 flex-shrink-0 animate-pulse rounded-full bg-zinc-950" />
             <div>
-              <p className="font-bold text-moss-dark">Concierge on Duty</p>
-              <p className="text-stone-500">Kolkata & Siliguri Desk Active</p>
+              <p className="font-semibold text-zinc-950">Concierge Active</p>
+              <p className="text-zinc-500">Kolkata &amp; Durgapur Desk</p>
             </div>
           </div>
         </div>
@@ -575,7 +575,7 @@ export default function CustomItineraryPage() {
                   );
                   window.open(`https://wa.me/919830072946?text=${message}`, '_blank');
                 }}
-                className="w-full flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold py-4 px-6 rounded-2xl transition shadow-md text-sm sm:text-base"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-6 py-4 text-sm font-semibold text-white transition hover:bg-zinc-800 sm:text-base"
               >
                 <MessageSquare className="w-5 h-5" />
                 Get WhatsApp Itinerary in 2 Hours
@@ -583,9 +583,9 @@ export default function CustomItineraryPage() {
 
               <a
                 href="tel:+919830072946"
-                className="w-full flex items-center justify-center gap-2 border border-moss-dark/20 text-moss-dark hover:bg-sand font-semibold py-3 px-4 rounded-2xl transition text-xs sm:text-sm"
+                className="flex w-full items-center justify-center gap-2 rounded-full border border-zinc-300 px-4 py-3 text-xs font-semibold text-zinc-900 transition hover:border-zinc-950 sm:text-sm"
               >
-                <PhoneCall className="w-4 h-4 text-terracotta" />
+                <PhoneCall className="w-4 h-4 text-zinc-950" />
                 Speak to Senior Curator at +91 98300 72946
               </a>
             </div>

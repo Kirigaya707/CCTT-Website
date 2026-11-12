@@ -34,36 +34,36 @@ export default function TourCard(props: TourCardProps) {
   ];
 
   return (
-    <article className="bg-white rounded-2xl border border-sand shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col h-full">
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-colors hover:border-zinc-400">
       <div className="p-6 flex-1 flex flex-col justify-between">
         <div>
           {badge && (
-            <span className="inline-block bg-terracotta/10 text-terracotta text-xs font-semibold px-3 py-1 rounded-full mb-3">
+            <span className="mb-3 inline-block rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700">
               {badge}
             </span>
           )}
-          <h2 className="text-2xl font-serif font-bold text-moss-dark mb-1 line-clamp-2">
+          <h2 className="mb-1 line-clamp-2 text-2xl font-bold text-zinc-950">
             {title}
           </h2>
-          <p className="text-sm text-stone-500 mb-4">{subtitle}</p>
+          <p className="mb-4 text-sm text-zinc-500">{subtitle}</p>
 
-          <div className="space-y-2 mb-6 text-sm text-stone-600">
+          <div className="mb-6 space-y-2 text-sm text-zinc-600">
             <p>
-              <span className="font-semibold text-moss-dark">Duration:</span> {duration}
+              <span className="font-semibold text-zinc-950">Duration:</span> {duration}
             </p>
             <p>
-              <span className="font-semibold text-moss-dark">Pickup:</span> {pickup}
+              <span className="font-semibold text-zinc-950">Pickup:</span> {pickup}
             </p>
           </div>
 
-          <div className="border-t border-sand pt-4 mb-6">
-            <p className="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+          <div className="mb-6 border-t border-zinc-200 pt-4">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400">
               Key Highlights
             </p>
-            <ul className="space-y-1 text-xs text-stone-600">
+            <ul className="space-y-1 text-xs text-zinc-600">
               {highlights.slice(0, 3).map((item, idx) => (
                 <li key={idx} className="flex items-center gap-1.5">
-                  <span className="text-terracotta">•</span>
+                  <span className="text-zinc-400">•</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -71,14 +71,14 @@ export default function TourCard(props: TourCardProps) {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-sand flex items-center justify-between mt-auto">
+        <div className="mt-auto flex items-center justify-between border-t border-zinc-200 pt-4">
           <div>
-            <span className="text-xs text-stone-400 block">Starting from</span>
-            <span className="text-xl font-bold text-terracotta">{price}</span>
+            <span className="block text-xs text-zinc-400">Starting from</span>
+            <span className="text-xl font-bold text-zinc-950">{price}</span>
           </div>
           <Link
             href={`/tours/${slug}`}
-            className="px-4 py-2 rounded-xl bg-moss hover:bg-moss-dark text-white text-sm font-medium transition-colors"
+            className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
           >
             View Details
           </Link>

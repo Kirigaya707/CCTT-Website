@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-stone-700 border-t border-sand pt-12 pb-8">
+    <footer className="border-t border-zinc-200 bg-white pt-12 pb-8 text-zinc-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
@@ -15,7 +15,7 @@ export default function Footer() {
               height={40}
               className="h-10 w-auto object-contain"
             />
-            <span className="font-serif text-2xl font-bold text-white tracking-tight">
+            <span className="font-serif text-2xl font-bold tracking-tight text-zinc-950">
               chuti chuti
             </span>
           </div>
@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-sand pt-6 text-center text-xs text-stone-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-zinc-200 pt-6 text-center text-xs text-zinc-500">
         <p>© 2026 Chuti Chuti Tours &amp; Travels. All rights reserved.</p>
       </div>
     </footer>

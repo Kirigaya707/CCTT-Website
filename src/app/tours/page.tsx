@@ -44,6 +44,7 @@ export default function ToursPage() {
           setTours(fallbackTours);
         } else {
           const formattedData = data.map((item: any) => ({
+            id: item.id,
             slug: item.slug,
             title: item.title,
             subtitle: item.subtitle,
@@ -67,22 +68,23 @@ export default function ToursPage() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-        <span className="text-xs font-extrabold tracking-widest text-terracotta uppercase">
-          Handcrafted Journeys
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div className="mx-auto mb-10 max-w-3xl space-y-3 text-center">
+        <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
+          HANDCRAFTED JOURNEYS
         </span>
-        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-moss-dark">
+        <h1 className="text-4xl font-bold tracking-tight text-zinc-950 sm:text-5xl">
           Curated Travel Packages
         </h1>
-        <p className="text-stone-600 text-base sm:text-lg">
+        <p className="text-base text-zinc-500 sm:text-lg">
           Discover handpicked cultural heritage tours and scenic travel routes across Eastern India.
         </p>
       </div>
 
       {/* Admin Add Tour Button */}
       {userIsAdmin && (
-        <div className="mb-6 text-center">
+        <div className="mb-8 text-center">
           <button
             onClick={async () => {
               const title = prompt('Enter Tour Title:');
@@ -92,7 +94,7 @@ export default function ToursPage() {
               const { data, error } = await supabase.from('tours').insert([
                 {
                   title,
-                  slug: title.toLowerCase().replace(/[^a-z0-0]+/g, '-'),
+                  slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
                   price_veg: price || '0',
                   category: category || 'mountain',
                   is_active: true,
@@ -102,33 +104,42 @@ export default function ToursPage() {
                 setTours((prev) => [...prev, data[0]]);
               }
             }}
-            className="px-4 py-2 bg-terracotta text-white text-xs font-bold rounded-xl shadow hover:bg-terracotta-dark transition"
+            className="rounded-full bg-zinc-950 px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-zinc-800"
           >
             + Add New Tour (Admin Only)
           </button>
         </div>
       )}
 
-      {/* Experience Vibe Filter */}
-      <div className="max-w-xs mx-auto mb-10 text-left">
-        <label className="block text-[10px] font-extrabold uppercase tracking-widest text-stone-500 mb-1.5">
-          EXPERIENCE VIBE
-        </label>
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full bg-sand/30 border border-sand rounded-2xl px-4 py-2.5 text-xs font-serif font-bold text-stone-800 focus:outline-none focus:border-terracotta cursor-pointer"
-        >
-          <option value="all">All Curated Escapes</option>
-          <option value="mountain">Mountain based trips</option>
-          <option value="beach">Beach based trips</option>
-          <option value="forest">Forest based trips</option>
-          <option value="cultural">Cultural and heritage events</option>
-        </select>
+      <div className="mb-12 flex flex-wrap justify-center gap-2">
+        {[
+          { id: 'all', label: 'All Curated Escapes' },
+          { id: 'mountain', label: 'Mountain based trips' },
+          { id: 'beach', label: 'Beach based trips' },
+          { id: 'forest', label: 'Forest based trips' },
+          { id: 'cultural', label: 'Cultural and heritage events' },
+        ].map((category) => (
+          <button
+            key={category.id}
+            type="button"
+            onClick={() => setSelectedCategory(category.id)}
+            className={`rounded-full px-5 py-2.5 text-xs font-semibold transition ${
+              selectedCategory === category.id
+                ? 'bg-zinc-950 text-white'
+                : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
+            }`}
+          >
+            {category.label}
+          </button>
+        ))}
       </div>
 
       {loading ? (
-        <div className="text-center py-12 text-stone-500 text-sm">Loading tours...</div>
+        <div className="py-12 text-center text-sm text-zinc-400">Loading tours...</div>
+      ) : tours.filter((tour) => selectedCategory === 'all' || tour.category === selectedCategory).length === 0 ? (
+        <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-14 text-center text-sm text-zinc-500">
+          No active packages listed under this category yet. Check back soon or build a custom trip.
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tours
@@ -139,7 +150,7 @@ export default function ToursPage() {
                 {userIsAdmin && (
                   <button
                     onClick={() => handleDeleteTour(tour.id)}
-                    className="absolute top-3 right-3 bg-rose-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow hover:bg-rose-700 transition"
+                    className="absolute right-3 top-3 rounded-full bg-zinc-950 px-3 py-1 text-[10px] font-semibold text-white shadow transition hover:bg-rose-600"
                   >
                     Delete (Admin)
                   </button>
@@ -148,6 +159,7 @@ export default function ToursPage() {
             ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

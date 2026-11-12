@@ -35,27 +35,27 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-sand">
+    <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3.5 group select-none">
           <Image
             src="/logo.jpg"
             alt="Chuti Chuti Icon"
-            width={48}
-            height={48}
-            className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            width={44}
+            height={44}
+            className="h-11 w-11 rounded-full border border-zinc-200 object-contain transition-transform duration-300 group-hover:scale-105"
             priority
           />
           <div className="flex flex-col justify-center brand-text-pan">
-            <span className="font-serif text-2xl font-bold tracking-tight text-moss-dark leading-none">
+            <span className="font-serif text-2xl font-bold tracking-tight text-zinc-950 leading-none">
               chuti chuti
             </span>
             <div className="flex items-center gap-1.5 mt-1">
-              <span className="h-[1px] w-3 bg-gold inline-block" />
-              <span className="text-[9px] tracking-[0.2em] uppercase font-bold text-stone-600 leading-none">
+              <span className="h-[1px] w-3 bg-zinc-400 inline-block" />
+              <span className="text-[9px] tracking-[0.22em] uppercase font-semibold text-zinc-500 leading-none">
                 Tours &amp; Travels
               </span>
-              <span className="h-[1px] w-3 bg-gold inline-block" />
+              <span className="h-[1px] w-3 bg-zinc-400 inline-block" />
             </div>
           </div>
           <style jsx>{`
@@ -91,12 +91,12 @@ export default function Navbar() {
             }
           `}</style>
         </Link>
-        <nav className="hidden md:flex items-center gap-8 font-medium text-stone-700">
-          <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>
-          <Link href="/tours" className="hover:text-terracotta transition-colors">Curated Trips</Link>
-          <Link href="/events" className="hover:text-terracotta transition-colors">Events &amp; Parikramas</Link>
-          <Link href="/custom-itinerary" className="hover:text-terracotta transition-colors">Custom Itinerary</Link>
-          <Link href="/about" className="hover:text-terracotta transition-colors">About Us</Link>
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
+          <Link href="/" className="transition-colors hover:text-zinc-950">Home</Link>
+          <Link href="/tours" className="transition-colors hover:text-zinc-950">Curated Trips</Link>
+          <Link href="/events" className="transition-colors hover:text-zinc-950">Events &amp; Parikramas</Link>
+          <Link href="/custom-itinerary" className="transition-colors hover:text-zinc-950">Custom Itinerary</Link>
+          <Link href="/about" className="transition-colors hover:text-zinc-950">About Us</Link>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-2.5">
@@ -104,14 +104,14 @@ export default function Navbar() {
             <>
               <Link
                 href="/profile"
-                className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
+                className="px-4 py-2 rounded-full border border-zinc-300 text-zinc-800 font-semibold text-xs transition-all hover:border-zinc-950 hover:text-zinc-950"
               >
-                {userName.split(" ")[0]}
+                {userName}
               </Link>
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
+                className="px-4 py-2 rounded-full border border-zinc-300 text-zinc-800 font-semibold text-xs transition-all hover:border-zinc-950 hover:text-zinc-950"
               >
                 Sign Out
               </button>
@@ -120,13 +120,13 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
+                className="px-4 py-2 rounded-full border border-zinc-300 text-zinc-800 font-semibold text-xs transition-all hover:border-zinc-950 hover:text-zinc-950"
               >
                 Login
               </Link>
               <Link
                 href="/login?mode=signup"
-                className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
+                className="px-4 py-2 rounded-full border border-zinc-300 text-zinc-800 font-semibold text-xs transition-all hover:border-zinc-950 hover:text-zinc-950"
               >
                 Sign Up
               </Link>
@@ -135,7 +135,7 @@ export default function Navbar() {
 
           <Link
             href="/tours"
-            className="px-4 py-2 rounded-full bg-moss-dark border border-moss-dark text-white font-bold text-xs hover:bg-moss-dark/90 transition-all shadow-sm"
+            className="rounded-full border border-zinc-950 bg-zinc-950 px-5 py-2 text-xs font-semibold text-white transition-all hover:bg-zinc-800"
           >
             Book Now
           </Link>

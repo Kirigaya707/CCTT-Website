@@ -61,13 +61,13 @@ function AuthForm() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-cream px-4 py-12">
-      <div className="max-w-md w-full bg-white rounded-3xl p-8 border border-sand shadow-xl space-y-6">
+    <div className="flex min-h-[80vh] items-center justify-center bg-zinc-50 px-4 py-12">
+      <div className="w-full max-w-md space-y-6 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
         <div className="text-center space-y-2">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-terracotta">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-zinc-400">
             CHUTI CHUTI MEMBER PORTAL
           </span>
-          <h1 className="text-3xl font-serif font-bold text-moss-dark">
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-950">
             {mode === 'login' && 'Welcome Back'}
             {mode === 'signup' && 'Create Account'}
             {mode === 'forgot' && 'Reset Password'}
@@ -146,7 +146,7 @@ function AuthForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-terracotta hover:bg-terracotta-dark text-white font-bold py-3 px-4 rounded-xl transition text-xs shadow-sm disabled:opacity-50 flex items-center justify-center gap-2"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-4 py-3.5 text-xs font-semibold text-white transition hover:bg-zinc-800 disabled:opacity-50"
           >
             {loading ? (
               'Processing...'

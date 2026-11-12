@@ -7,24 +7,22 @@ const specialEvents: any[] = [];
 
 export default function EventsPage() {
   return (
-    <div className="bg-cream min-h-screen pb-16">
-      <div className="bg-moss-dark text-cream py-14 px-4 sm:px-6 lg:px-8 border-b border-gold/30">
-        <div className="max-w-7xl mx-auto space-y-3 text-center">
-          <span className="bg-gold/20 text-gold text-xs font-bold px-3 py-1 rounded-full border border-gold/40 uppercase tracking-widest">
-            DAY EXPERIENCES & FESTIVAL TOURS
+    <div className="min-h-screen bg-white pb-20">
+      <div className="mx-auto max-w-7xl space-y-3 border-b border-zinc-200 px-4 pb-10 pt-14 text-center sm:px-6 lg:px-8">
+          <span className="inline-block rounded-full bg-zinc-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-zinc-700">
+            DAY EXPERIENCES &amp; CULTURAL WALKS
           </span>
-          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white">
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-950 sm:text-5xl">
             Heritage Events & Parikramas
           </h1>
-          <p className="text-cream/80 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Single-day cultural walks, traditional festival parikramas, and grand Rajbari feasts curated with authentic Bengali hospitality.
+          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-zinc-500 sm:text-base">
+            Single-day cultural walks, traditional festival parikramas, and curated heritage trails hosted with authentic Bengali hospitality.
           </p>
-        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+      <div className="mx-auto max-w-7xl space-y-12 px-4 py-12 sm:px-6 lg:px-8">
         {specialEvents.length === 0 ? (
-          <div className="text-center py-16 text-stone-500 text-sm bg-white rounded-3xl border border-sand">
+          <div className="rounded-3xl border border-zinc-200 bg-zinc-50 py-20 text-center text-sm text-zinc-500">
             No active events or parikramas scheduled at the moment. Please check back soon or contact us directly.
           </div>
         ) : (

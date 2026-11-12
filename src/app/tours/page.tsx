@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import TourCard from '@/components/TourCard';
+import Carousel from '@/components/Carousel/Carousel';
 import { supabase } from '@/lib/supabase';
 
 const fallbackTours: any[] = [];
@@ -141,11 +142,12 @@ export default function ToursPage() {
           No active packages listed under this category yet. Check back soon or build a custom trip.
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tours
-            .filter((tour) => selectedCategory === 'all' || tour.category === selectedCategory)
-            .map((tour) => (
-              <div key={tour.slug || tour.id} className="relative group">
+        <div className="flex justify-center">
+          <Carousel
+            items={tours
+              .filter((tour) => selectedCategory === 'all' || tour.category === selectedCategory)
+              .map((tour) => (
+              <div key={tour.slug || tour.id} className="relative h-full">
                 <TourCard {...tour} />
                 {userIsAdmin && (
                   <button
@@ -156,7 +158,17 @@ export default function ToursPage() {
                   </button>
                 )}
               </div>
-            ))}
+              ))}
+            baseWidth={360}
+            aspectRatio={0.78}
+            effect="slide"
+            indicator="dots"
+            arrows
+            frame={false}
+            loop
+            theme="light"
+            label="Curated tour packages"
+          />
         </div>
       )}
       </div>

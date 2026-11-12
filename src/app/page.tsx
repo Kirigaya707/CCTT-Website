@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import TourCard from '@/components/TourCard';
 import { RangeCalendar } from '@/components/RangeCalendar';
+import Carousel from '@/components/Carousel/Carousel';
 import { supabase } from '@/lib/supabase';
 
 export default function HomePage() {
@@ -183,8 +184,19 @@ export default function HomePage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filteredTours.map((tour) => <TourCard key={tour.slug} {...tour} />)}
+          <div className="flex justify-center">
+            <Carousel
+              items={filteredTours.map((tour) => <TourCard key={tour.slug} {...tour} />)}
+              baseWidth={360}
+              aspectRatio={0.78}
+              effect="slide"
+              indicator="dots"
+              arrows
+              frame={false}
+              loop
+              theme="light"
+              label="Curated tours"
+            />
           </div>
         )}
       </section>

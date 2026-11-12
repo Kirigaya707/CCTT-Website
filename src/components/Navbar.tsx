@@ -1,13 +1,38 @@
 'use client';
 
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 export default function Navbar() {
-  const { data: session, status } = useSession();
-  const isLoggedIn = status === "authenticated" && !!session?.user?.email;
-  const userName = session?.user?.name || session?.user?.email || "Traveler";
+  const router = useRouter();
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUserEmail(session?.user?.email ?? null);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUserEmail(session?.user?.email ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const isLoggedIn = !!userEmail;
+  const userName = userEmail ? userEmail.split("@")[0] : "Traveler";
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    setUserEmail(null);
+    router.push("/");
+    router.refresh();
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-sand">
@@ -85,7 +110,7 @@ export default function Navbar() {
               </Link>
               <button
                 type="button"
-                onClick={() => signOut({ callbackUrl: '/' })}
+                onClick={handleSignOut}
                 className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 font-bold text-xs hover:border-moss-dark hover:text-moss-dark hover:bg-sand/40 transition-all"
               >
                 Sign Out

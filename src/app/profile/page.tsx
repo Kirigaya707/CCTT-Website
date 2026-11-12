@@ -1,17 +1,39 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import { User, Compass, Clock } from 'lucide-react';
 
 export default function ProfilePage() {
-  const { data: session, status } = useSession();
-  const email = session?.user?.email || '';
+  const [email, setEmail] = useState('');
+  const [authLoading, setAuthLoading] = useState(true);
   const [bookings, setBookings] = useState<any[]>([]);
   const [customs, setCustoms] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (isMounted) {
+        setEmail(session?.user?.email ?? '');
+        setAuthLoading(false);
+      }
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setEmail(session?.user?.email ?? '');
+      setAuthLoading(false);
+    });
+
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     async function fetchUserData() {
@@ -43,11 +65,11 @@ export default function ProfilePage() {
     fetchUserData();
   }, [email]);
 
-  if (status === 'loading') {
+  if (authLoading) {
     return <div className="max-w-7xl mx-auto px-4 py-10 text-sm text-stone-500">Loading your profile…</div>;
   }
 
-  if (status === 'unauthenticated' || !email) {
+  if (!email) {
     return (
       <div className="max-w-xl mx-auto px-4 py-16 text-center">
         <h1 className="text-3xl font-serif font-bold text-moss-dark mb-3">Your profile is waiting</h1>
